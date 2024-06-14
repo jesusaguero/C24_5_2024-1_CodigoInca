@@ -59,8 +59,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
     return TableRow(
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text('Horas/Días'),
+          padding: const EdgeInsets.all(5.0),
+          child: Center(child: Text('Horas/Días')),
         ),
         for (int i = 0; i < 7; i++)
           GestureDetector(
@@ -71,8 +71,9 @@ class _HorarioScreenState extends State<HorarioScreen> {
             },
             child: Container(
               color: selectedDayIndex == i ? Colors.blueAccent : Colors.white,
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(5),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'][i],
@@ -126,12 +127,12 @@ class _HorarioScreenState extends State<HorarioScreen> {
       return TableRow(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(hours[hourIndex]),
+            padding: const EdgeInsets.all(5.0),
+            child: Center(child: Text(hours[hourIndex])),
           ),
           for (int i = 0; i < 7; i++)
             Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(5),
               color: Colors.white, // No change color of the cell
               child: _getClassForDayAndHour(i, hourIndex, classes),
             ),
@@ -150,7 +151,12 @@ class _HorarioScreenState extends State<HorarioScreen> {
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.blueAccent),
           ),
-          child: Center(child: Text(className)),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Text(className),
+            ),
+          ),
         );
       } else {
         return SizedBox.shrink();
