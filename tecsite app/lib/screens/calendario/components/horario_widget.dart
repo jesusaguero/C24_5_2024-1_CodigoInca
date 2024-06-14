@@ -40,7 +40,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
               child: Table(
                 border: TableBorder.all(),
                 columnWidths: {
-                  0: FixedColumnWidth(100),
+                  0: FixedColumnWidth(130), // Adjusted width for the hours column
                   for (int i = 1; i <= 7; i++) i: FlexColumnWidth(),
                 },
                 children: [
@@ -59,8 +59,18 @@ class _HorarioScreenState extends State<HorarioScreen> {
     return TableRow(
       children: [
         Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Center(child: Text('Horas/Días')),
+          padding: const EdgeInsets.all(5.0), // Adjusted padding
+          child: Center(
+            child: Container(
+              height: 43, // Set a fixed height to ensure vertical alignment
+              child: Center(
+                child: Text(
+                  'Horas/Días',
+                  textAlign: TextAlign.center, // Center text horizontally
+                ),
+              ),
+            ),
+          ),
         ),
         for (int i = 0; i < 7; i++)
           GestureDetector(
@@ -70,20 +80,42 @@ class _HorarioScreenState extends State<HorarioScreen> {
               });
             },
             child: Container(
-              color: selectedDayIndex == i ? Colors.blueAccent : Colors.white,
-              padding: EdgeInsets.all(5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'][i],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: selectedDayIndex == i ? Colors.white : Colors.black,
+              padding: EdgeInsets.symmetric(vertical: 5), // Adjusted padding
+              child: Center(
+                child: Container(
+                  height: 43, // Set a fixed height to ensure vertical alignment
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (selectedDayIndex == i)
+                          CircleAvatar(
+                            radius: 18,
+                            backgroundColor: Colors.blueAccent,
+                            child: Text(
+                              ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'][i],
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13, // Smaller font size
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.center, // Center text horizontally
+                            ),
+                          )
+                        else
+                          Text(
+                            ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'][i],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14, // Smaller font size
+                              color: Colors.black,
+                            ),
+                            textAlign: TextAlign.center, // Center text horizontally
+                          ),
+                      ],
                     ),
                   ),
-                  if (selectedDayIndex == i) CircleAvatar(radius: 4, backgroundColor: Colors.white),
-                ],
+                ),
               ),
             ),
           ),
@@ -93,23 +125,23 @@ class _HorarioScreenState extends State<HorarioScreen> {
 
   List<TableRow> _buildTableRows() {
     List<String> hours = [
-      '8:00 - 8:50 am',
-      '8:50 - 9:40 am',
-      '9:40 - 10:30 am',
+      '08:00 - 08:50 am',
+      '08:50 - 09:40 am',
+      '09:40 - 10:30 am',
       '10:30 - 11:20 am',
       '11:20 - 12:10 pm',
-      '12:10 - 1:00 pm',
-      '1:00 - 1:50 pm',
-      '1:50 - 2:40 pm',
-      '2:40 - 3:30 pm',
-      '3:30 - 4:20 pm',
-      '4:20 - 5:10 pm',
-      '5:10 - 6:00 pm',
-      '6:00 - 6:50 pm',
-      '6:50 - 7:40 pm',
-      '7:40 - 8:30 pm',
-      '8:30 - 9:20 pm',
-      '9:20 - 10:10 pm',
+      '12:10 - 01:00 pm',
+      '01:00 - 01:50 pm',
+      '01:50 - 02:40 pm',
+      '02:40 - 03:30 pm',
+      '03:30 - 04:20 pm',
+      '04:20 - 05:10 pm',
+      '05:10 - 06:00 pm',
+      '06:00 - 06:50 pm',
+      '06:50 - 07:40 pm',
+      '07:40 - 08:30 pm',
+      '08:30 - 09:20 pm',
+      '09:20 - 10:10 pm',
       '10:10 - 11:00 pm',
     ];
 
@@ -127,12 +159,12 @@ class _HorarioScreenState extends State<HorarioScreen> {
       return TableRow(
         children: [
           Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(2.0), // Reduced padding
             child: Center(child: Text(hours[hourIndex])),
           ),
           for (int i = 0; i < 7; i++)
             Container(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(2), // Reduced padding
               color: Colors.white, // No change color of the cell
               child: _getClassForDayAndHour(i, hourIndex, classes),
             ),
