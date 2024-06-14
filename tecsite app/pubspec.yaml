@@ -66,6 +66,8 @@ flutter:
     - assets/fotocarnet.png
     - assets/homeimg.png
     - assets/googleicon.png
+    - assets/fotocarnet2.png
+    - assets/qrimg.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

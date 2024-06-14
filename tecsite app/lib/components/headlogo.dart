@@ -10,7 +10,7 @@ class HeadLogo extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(0),
       color: Colors.grey[200], // Color ligeramente gris
-      height: 80, // Puedes ajustar este valor según tus necesidades
+      height: 50, // Puedes ajustar este valor según tus necesidades
       child: Stack(
         children: [
           if (showMenuIcon)
@@ -22,14 +22,14 @@ class HeadLogo extends StatelessWidget {
                 child: Icon(
                   Icons.menu,
                   color: Color(0xFF20B2E3),
-                  size: 32, // Tamaño del icono
+                  size: 26, // Tamaño del icono
                 ),
               ),
             ),
           Center(
             child: Image.asset(
               'assets/t_logo2.png', // Ruta de la imagen
-              width: 60, // Ancho de la imagen (puedes ajustar este valor según tus necesidades)
+              width: 40, // Ancho de la imagen (puedes ajustar este valor según tus necesidades)
             ),
           ),
         ],

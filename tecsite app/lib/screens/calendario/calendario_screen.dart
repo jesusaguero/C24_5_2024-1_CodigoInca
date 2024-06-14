@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tecsite/components/navbar.dart'; // Ajusta la ruta según tu estructura de carpetas
 import 'package:tecsite/components/headlogo.dart';
+import 'package:tecsite/screens/calendario/components/horario_widget.dart'; // Asegúrate de importar el archivo correctamente
 
 class CalendarioScreen extends StatelessWidget {
   @override
@@ -10,14 +11,12 @@ class CalendarioScreen extends StatelessWidget {
         children: [
           HeadLogo(), // Utiliza el componente HeadLogo
           Expanded(
-            child: Center(
-              child: Text('Contenido de la pantalla calendario'),
-            ),
+            child: HorarioScreen(), // Aquí se llama el widget del horario
           ),
         ],
       ),
       bottomNavigationBar: NavBar(
-        selectedIndex: 1, // Índice de la vista actual (Home)
+        selectedIndex: 1, // Índice de la vista actual (Calendario)
         onItemTapped: (index) {
           // Navegar a la vista correspondiente según el índice
           switch (index) {
