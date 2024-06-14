@@ -90,9 +90,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
     );
   }
 
-
   List<TableRow> _buildTableRows() {
-    List<String> days = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
     List<String> hours = [
       '8:00 - 8:50 am',
       '8:50 - 9:40 am',
@@ -115,8 +113,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
     ];
 
     List<List<String?>> classes = [
-      // Horarios para cada día de la semana
-      ['Desarrollo de Soluciones en la Nube', null, null, null, null, null, null, 'Desarrollo de Soluciones en la Nube','Desarrollo de Soluciones en la Nube','Desarrollo de Soluciones en la Nube','Desarrollo de Soluciones en la Nube','Desarrollo de Soluciones en la Nube'  ],
+      ['Desarrollo de Soluciones en la Nube', null, null, null, null, null, null, 'Desarrollo de Soluciones en la Nube', 'Desarrollo de Soluciones en la Nube', 'Desarrollo de Soluciones en la Nube', 'Desarrollo de Soluciones en la Nube', 'Desarrollo de Soluciones en la Nube'],
       ['Se vienen cositas', 'Desarrollo de Soluciones en la Nube', null, null, null, null, null],
       [null, null, 'Desarrollo de Soluciones en la Nube', null, null, null, null],
       [null, null, null, 'Desarrollo de Soluciones en la Nube', null, null, null],
@@ -135,7 +132,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
           for (int i = 0; i < 7; i++)
             Container(
               padding: EdgeInsets.all(8),
-              color: i == selectedDayIndex ? Colors.blueAccent.withOpacity(0.2) : Colors.white,
+              color: Colors.white, // No change color of the cell
               child: _getClassForDayAndHour(i, hourIndex, classes),
             ),
         ],
@@ -144,13 +141,12 @@ class _HorarioScreenState extends State<HorarioScreen> {
   }
 
   Widget _getClassForDayAndHour(int dayIndex, int hourIndex, List<List<String?>> classes) {
-    // Verifica si dayIndex y hourIndex están dentro del rango correcto antes de usarlos para acceder a la lista
     if (dayIndex >= 0 && dayIndex < classes.length && hourIndex >= 0 && hourIndex < classes[dayIndex].length) {
       String? className = classes[dayIndex][hourIndex];
       if (className != null) {
         return Container(
           decoration: BoxDecoration(
-            color: Colors.blueAccent.withOpacity(0.2),
+            color: Colors.white, // Keep the cell background white
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.blueAccent),
           ),
@@ -163,5 +159,4 @@ class _HorarioScreenState extends State<HorarioScreen> {
       return SizedBox.shrink();
     }
   }
-
 }
