@@ -8,109 +8,120 @@ class HorarioScreen extends StatefulWidget {
 class _HorarioScreenState extends State<HorarioScreen> {
   DateTime selectedDate = DateTime.now();
   int selectedDayIndex = DateTime.now().weekday - 1; // Convert Sunday=0 to Monday=0
+  int startIndex = 0; // Index to control the starting day column
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    selectedDayIndex = DateTime.now().weekday - 1;
-                  });
-                },
-                child: Text('Hoy'),
-              ),
-              Text(
-                'Mayo 21 – 27, 2024',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ],
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedDayIndex = DateTime.now().weekday - 1;
+                      startIndex = 0; // Reset the start index to the current day
+                    });
+                  },
+                  child: Text('Hoy'),
+                ),
+                Text(
+                  'Mayo 21 – 27, 2024',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          child: SingleChildScrollView(
+          Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Table(
-                border: TableBorder.all(),
-                columnWidths: {
-                  0: FixedColumnWidth(130), // Adjusted width for the hours column
-                  for (int i = 1; i <= 7; i++) i: FlexColumnWidth(),
-                },
+              padding: const EdgeInsets.only(left: 20.0),
+              child: ListView(
                 children: [
-                  _buildTableHeader(),
-                  ..._buildTableRows(),
+                  Table(
+                    border: TableBorder.symmetric(
+                      inside: BorderSide(color: Colors.grey[200]!, width: 4.0),
+                    ),
+                    columnWidths: {
+                      0: FixedColumnWidth(130),
+                      for (int i = 1; i <= 3; i++) i: FixedColumnWidth(130), // Only show 3 columns at a time
+                    },
+                    children: [
+                      _buildTableHeader(),
+                      ..._buildTableRows(),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
-        ),
-      ],
+          SizedBox(height: 20), // Add 20 margin at the bottom
+        ],
+      ),
     );
   }
 
   TableRow _buildTableHeader() {
+    List<String> days = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
     return TableRow(
       children: [
         Padding(
-          padding: const EdgeInsets.all(5.0), // Adjusted padding
+          padding: const EdgeInsets.all(5.0),
           child: Center(
             child: Container(
-              height: 43, // Set a fixed height to ensure vertical alignment
+              height: 43,
               child: Center(
                 child: Text(
                   'Horas/Días',
-                  textAlign: TextAlign.center, // Center text horizontally
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
           ),
         ),
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 3; i++) // Only show 3 columns at a time
           GestureDetector(
             onTap: () {
               setState(() {
-                selectedDayIndex = i;
+                selectedDayIndex = (startIndex + i) % 7; // Update the selected day index
+                startIndex = (startIndex + i) % 7; // Update the start index to show selected day as the first day
               });
             },
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 5), // Adjusted padding
+              padding: EdgeInsets.symmetric(vertical: 5),
               child: Center(
                 child: Container(
-                  height: 43, // Set a fixed height to ensure vertical alignment
+                  height: 43,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (selectedDayIndex == i)
+                        if (selectedDayIndex == (startIndex + i) % 7)
                           CircleAvatar(
                             radius: 18,
                             backgroundColor: Colors.blueAccent,
                             child: Text(
-                              ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'][i],
+                              days[(startIndex + i) % 7],
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 13, // Smaller font size
+                                fontSize: 13,
                                 color: Colors.white,
                               ),
-                              textAlign: TextAlign.center, // Center text horizontally
+                              textAlign: TextAlign.center,
                             ),
                           )
                         else
                           Text(
-                            ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'][i],
+                            days[(startIndex + i) % 7],
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14, // Smaller font size
+                              fontSize: 14,
                               color: Colors.black,
                             ),
-                            textAlign: TextAlign.center, // Center text horizontally
+                            textAlign: TextAlign.center,
                           ),
                       ],
                     ),
@@ -146,27 +157,31 @@ class _HorarioScreenState extends State<HorarioScreen> {
     ];
 
     List<List<String?>> classes = [
-      ['Desarrollo de Soluciones en la Nube', null, null, null, null, null, null, 'Desarrollo de Soluciones en la Nube', 'Desarrollo de Soluciones en la Nube', 'Desarrollo de Soluciones en la Nube', 'Desarrollo de Soluciones en la Nube', 'Desarrollo de Soluciones en la Nube'],
-      ['Se vienen cositas', 'Desarrollo de Soluciones en la Nube', null, null, null, null, null],
-      [null, null, 'Desarrollo de Soluciones en la Nube', null, null, null, null],
-      [null, null, null, 'Desarrollo de Soluciones en la Nube', null, null, null],
-      [null, null, null, null, 'Desarrollo de Soluciones en la Nube', null, 'Asi soy yo ps'],
-      [null, null, null, null, null, 'Desarrollo de Soluciones en la Nube', null],
-      ['Awawero ya tu sabes todo mi kong', null, null, null, null, null, 'Desarrollo de Soluciones en la Nube'],
+      ['1', null, null, null, null, null, null, '1', '1', '1', '1', '1'],
+      ['Se vienen cositas', '1', null, null, null, null, null],
+      [null, null, '1', null, null, null, null],
+      [null, null, null, '1', null, null, null],
+      [null, null, null, null, '1', null, 'Asi soy yo ps'],
+      [null, null, null, null, null, '1', null],
+      ['Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null, null, null, '1'],
     ];
 
     return List.generate(hours.length, (hourIndex) {
       return TableRow(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(2.0), // Reduced padding
+          Container(
+            width: 130,
+            height: 150,
+            padding: const EdgeInsets.all(2.0),
             child: Center(child: Text(hours[hourIndex])),
           ),
-          for (int i = 0; i < 7; i++)
+          for (int i = 0; i < 3; i++) // Only show 3 columns at a time
             Container(
-              padding: EdgeInsets.all(2), // Reduced padding
-              color: Colors.white, // No change color of the cell
-              child: _getClassForDayAndHour(i, hourIndex, classes),
+              width: 130,
+              height: 150,
+              padding: EdgeInsets.all(2),
+              color: Colors.white,
+              child: _getClassForDayAndHour((startIndex + i) % 7, hourIndex, classes),
             ),
         ],
       );
@@ -178,23 +193,40 @@ class _HorarioScreenState extends State<HorarioScreen> {
       String? className = classes[dayIndex][hourIndex];
       if (className != null) {
         return Container(
+          width: 130,
+          height: 150,
           decoration: BoxDecoration(
-            color: Colors.white, // Keep the cell background white
+            color: Colors.white,
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.blueAccent),
           ),
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child: Text(className),
+              child: Text(
+                className,
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         );
       } else {
-        return SizedBox.shrink();
+        return Container(
+          width: 130,
+          height: 150,
+          child: Center(
+            child: Text(''),
+          ),
+        );
       }
     } else {
-      return SizedBox.shrink();
+      return Container(
+        width: 130,
+        height: 150,
+        child: Center(
+          child: Text(''),
+        ),
+      );
     }
   }
 }
