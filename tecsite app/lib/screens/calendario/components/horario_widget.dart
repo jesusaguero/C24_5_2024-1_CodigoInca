@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class HorarioScreen extends StatefulWidget {
   @override
@@ -8,7 +10,13 @@ class HorarioScreen extends StatefulWidget {
 class _HorarioScreenState extends State<HorarioScreen> {
   DateTime selectedDate = DateTime.now();
   int selectedDayIndex = DateTime.now().weekday - 1; // Convert Sunday=0 to Monday=0
-  int startIndex = 0; // Index to control the starting day column
+  int startIndex = DateTime.now().weekday - 1; // Start with the current day column visible
+
+  @override
+  void initState() {
+    super.initState();
+    initializeDateFormatting('es', null); // Inicializa el formato de fecha en español
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +31,24 @@ class _HorarioScreenState extends State<HorarioScreen> {
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
+                      selectedDate = DateTime.now();
                       selectedDayIndex = DateTime.now().weekday - 1;
-                      startIndex = 0; // Reset the start index to the current day
+                      startIndex = DateTime.now().weekday - 1; // Reset the start index to the current day
                     });
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white, // Background color
+                    foregroundColor: Color(0xFF004C83), // Text color
+                    side: BorderSide(color: Colors.grey[300]!), // Border color
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold, // Text weight
+                    ),
+                  ),
                   child: Text('Hoy'),
                 ),
                 Text(
-                  'Mayo 21 – 27, 2024',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  _getFormattedWeekRange(selectedDate),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF004C83)),
                 ),
               ],
             ),
@@ -64,6 +81,19 @@ class _HorarioScreenState extends State<HorarioScreen> {
     );
   }
 
+  String _getFormattedWeekRange(DateTime date) {
+    final DateTime firstDayOfWeek = date.subtract(Duration(days: date.weekday - 1));
+    final DateTime lastDayOfWeek = firstDayOfWeek.add(Duration(days: 6));
+    final DateFormat formatter = DateFormat('MMMM d', 'es'); // Formato en español
+
+    // Capitalize the first letter of the month
+    String firstDayFormatted = toBeginningOfSentenceCase(formatter.format(firstDayOfWeek))!;
+    String lastDayFormatted = DateFormat('d', 'es').format(lastDayOfWeek);
+    String year = date.year.toString();
+
+    return '$firstDayFormatted – $lastDayFormatted, $year';
+  }
+
   TableRow _buildTableHeader() {
     List<String> days = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
     return TableRow(
@@ -74,9 +104,10 @@ class _HorarioScreenState extends State<HorarioScreen> {
             child: Container(
               height: 43,
               child: Center(
-                child: Text(
-                  'Horas/Días',
-                  textAlign: TextAlign.center,
+                child: Icon(
+                  Icons.access_time,
+                  size: 30,
+                  color: Colors.grey[350],
                 ),
               ),
             ),
@@ -102,7 +133,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                         if (selectedDayIndex == (startIndex + i) % 7)
                           CircleAvatar(
                             radius: 18,
-                            backgroundColor: Colors.blueAccent,
+                            backgroundColor: Color(0xFF004C83),
                             child: Text(
                               days[(startIndex + i) % 7],
                               style: TextStyle(
@@ -119,7 +150,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
-                              color: Colors.black,
+                              color: Color(0xFF004C83),
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -157,13 +188,13 @@ class _HorarioScreenState extends State<HorarioScreen> {
     ];
 
     List<List<String?>> classes = [
-      ['1', null, null, null, null, null, null, '1', '1', '1', '1', '1'],
-      ['Se vienen cositas', '1', null, null, null, null, null],
-      [null, null, '1', null, null, null, null],
-      [null, null, null, '1', null, null, null],
-      [null, null, null, null, '1', null, 'Asi soy yo ps'],
-      [null, null, null, null, null, '1', null],
-      ['Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null, null, null, '1'],
+      ['Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null, null, null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507'],
+      ['Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null, null, null],
+      [null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', '1', null, null, null, null],
+      [null, null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null],
+      [null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507'],
+      [null, null, null, null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null],
+      ['Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null, null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507'],
     ];
 
     return List.generate(hours.length, (hourIndex) {
@@ -173,7 +204,15 @@ class _HorarioScreenState extends State<HorarioScreen> {
             width: 130,
             height: 150,
             padding: const EdgeInsets.all(2.0),
-            child: Center(child: Text(hours[hourIndex])),
+            child: Center(
+              child: Text(
+                hours[hourIndex],
+                style: TextStyle(
+                  color: Color(0xFF004C83),
+                  fontWeight: FontWeight.bold, // Make text bold
+                ),
+              ),
+            ),
           ),
           for (int i = 0; i < 3; i++) // Only show 3 columns at a time
             Container(
@@ -206,6 +245,10 @@ class _HorarioScreenState extends State<HorarioScreen> {
               child: Text(
                 className,
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF004C83), // Text color for classes
+                  fontWeight: FontWeight.bold, // Opcional: para hacer el texto en negrita
+                ),
               ),
             ),
           ),
