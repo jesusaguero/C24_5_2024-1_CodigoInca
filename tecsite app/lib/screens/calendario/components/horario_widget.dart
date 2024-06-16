@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import './../curso.dart';
 
 class HorarioScreen extends StatefulWidget {
   @override
@@ -187,14 +188,50 @@ class _HorarioScreenState extends State<HorarioScreen> {
       '10:10 - 11:00 pm',
     ];
 
-    List<List<String?>> classes = [
-      ['Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null, null, null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507'],
-      ['Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null, null, null],
-      [null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', '1', null, null, null, null],
-      [null, null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null],
-      [null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507'],
-      [null, null, null, null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null],
-      ['Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', null, null, null, null, null, 'Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507'],
+    List<List<Curso?>> classes = [
+      [
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507', Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        null, null, null, null, null, null,
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+      ],
+      [
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        null, null, null, null, null
+      ],
+      [
+        null,
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        Curso('1',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        null, null, null, null
+      ],
+      [
+        null, null, null,
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        null, null, null
+      ],
+      [
+        null, null,
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        null,
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        null,
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39))
+      ],
+      [
+        null, null, null, null, null,
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        null
+      ],
+      [
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39)),
+        null, null, null, null, null,
+        Curso('Desarrollo de Aplicaciones Web Avanzado y soluciones en la nube. Aula: 1507',Color.fromARGB(255, 236, 246, 237), Color(0xFF29CC39))
+      ],
     ];
 
     return List.generate(hours.length, (hourIndex) {
@@ -227,23 +264,23 @@ class _HorarioScreenState extends State<HorarioScreen> {
     });
   }
 
-  Widget _getClassForDayAndHour(int dayIndex, int hourIndex, List<List<String?>> classes) {
+  Widget _getClassForDayAndHour(int dayIndex, int hourIndex, List<List<Curso?>> classes) {
     if (dayIndex >= 0 && dayIndex < classes.length && hourIndex >= 0 && hourIndex < classes[dayIndex].length) {
-      String? className = classes[dayIndex][hourIndex];
-      if (className != null) {
+      Curso? curso = classes[dayIndex][hourIndex];
+      if (curso != null) {
         return Container(
           width: 130,
           height: 150,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: curso.fondo,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: Colors.blueAccent),
+            border: Border.all(color: curso.borde),
           ),
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Text(
-                className,
+                curso.nombre,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF004C83), // Text color for classes
