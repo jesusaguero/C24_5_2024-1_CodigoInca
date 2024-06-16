@@ -9,17 +9,17 @@ class FilaTablaConfiguracion extends StatelessWidget {
     Key? key,
     required this.label,
     required this.value,
-    this.leftLabelWidth = 61.0, // Ancho predeterminado para el texto de la izquierda
+    this.leftLabelWidth = 61.0, 
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10), // Margen horizontal de 20px y margen vertical de 10px
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10), 
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Texto de la izquierda en negrita con un ancho fijo
+          
           SizedBox(
             width: leftLabelWidth,
             child: Text(
@@ -27,17 +27,17 @@ class FilaTablaConfiguracion extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(width: 12), // Espacio entre los textos
-          // Texto de la derecha con truncamiento y puntos suspensivos
+          SizedBox(width: 12), 
+         
           Flexible(
             child: Text(
               value,
               textAlign: TextAlign.left,
               style: TextStyle(
-                fontSize: 16, // Tamaño de la fuente para los textos de la derecha
+                fontSize: 16, 
               ),
               overflow: TextOverflow.ellipsis,
-              maxLines: 1, // Limitar a una línea
+              maxLines: 1, 
               softWrap: false,
             ),
           ),

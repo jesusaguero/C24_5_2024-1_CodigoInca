@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tecsite/components/navbar.dart'; 
-import 'package:tecsite/components/head2.dart'; // Importa el archivo que contiene Head2
+import 'package:tecsite/components/head2.dart';
 import 'package:tecsite/screens/detalleasistencia/cursoporcentaje.dart';
 import 'package:tecsite/screens/detalleasistencia/datatabledetalleasistencia.dart';
 
@@ -11,8 +11,7 @@ class DetalleasistenciaScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Aquí utilizas el componente Head2
-          Head2(showBackIcon: true, // Muestra la flecha hacia atrás
+          Head2(showBackIcon: true, 
                 onBackPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -41,9 +40,8 @@ class DetalleasistenciaScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: NavBar(
-        selectedIndex: 3, // Índice de la vista actual (Home)
+        selectedIndex: 3, 
         onItemTapped: (index) {
-          // Navegar a la vista correspondiente según el índice
           switch (index) {
             case 0:
               Navigator.pushNamed(context, '/carnet');

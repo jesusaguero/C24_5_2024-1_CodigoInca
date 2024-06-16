@@ -4,7 +4,6 @@ class SearchBarWithFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: EdgeInsets.all(20),
       margin: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 0), 
       decoration: BoxDecoration(
         color: Colors.white,

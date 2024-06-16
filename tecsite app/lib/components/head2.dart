@@ -2,34 +2,34 @@ import 'package:flutter/material.dart';
 
 class Head2 extends StatelessWidget {
   final bool showMenuIcon;
-  final bool showBackIcon; // Nuevo parámetro para mostrar la flecha hacia atrás
-  final VoidCallback? onBackPressed; // Callback para la acción de retroceso
+  final bool showBackIcon; 
+  final VoidCallback? onBackPressed; 
 
   Head2({this.showMenuIcon = false, this.showBackIcon = false, this.onBackPressed});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(0), // Color de fondo
+      padding: EdgeInsets.all(0), 
       color: Color(0xFF0B74BB),
-      height: 48, // Altura ajustada
-      width: double.infinity, // Ocupa todo el ancho de la pantalla
+      height: 48,
+      width: double.infinity, 
       child: Stack(
         children: [
           if (showMenuIcon)
             Positioned(
-              left: 16, // Ajusta la distancia desde el borde izquierdo
+              left: 16, 
               top: 0,
               bottom: 0,
               child: Center(
                 child: Icon(
                   Icons.menu,
-                  color: Colors.white, // Color del icono
-                  size: 32, // Tamaño del icono
+                  color: Colors.white,
+                  size: 32, 
                 ),
               ),
             ),
-          if (showBackIcon) // Condición para mostrar la flecha hacia atrás
+          if (showBackIcon) 
             Positioned(
               left: 16,
               top: 0,
@@ -50,9 +50,9 @@ class Head2 extends StatelessWidget {
             child: Text(
               'Cursos 5to. C24-A',
               style: TextStyle(
-                color: Colors.white, // Color del texto
-                fontSize: 18, // Tamaño de la fuente
-                fontWeight: FontWeight.bold, // Negrita para el texto
+                color: Colors.white, 
+                fontSize: 18,
+                fontWeight: FontWeight.bold, 
               ),
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tecsite/components/navbar.dart'; // Ajusta la ruta según tu estructura de carpetas
+import 'package:tecsite/components/navbar.dart'; 
 import 'package:tecsite/components/headlogo.dart';
-import 'package:tecsite/screens/carnet/components/carnet_widget.dart'; // Asegúrate de importar el archivo correctamente
+import 'package:tecsite/screens/carnet/components/carnet_widget.dart'; 
 
 class CarnetScreen extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class CarnetScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          HeadLogo(), // Utiliza el componente HeadLogo
+          HeadLogo(), 
           Expanded(
             child: CustomScrollView(
               slivers: [
@@ -22,7 +22,7 @@ class CarnetScreen extends StatelessWidget {
                         '¡Bienvenido!',
                         style: TextStyle(
                           color: Color(0xFF004C83),
-                          fontSize: 24, // Ajusta el tamaño de fuente según sea necesario
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -38,7 +38,7 @@ class CarnetScreen extends StatelessWidget {
                         'Lunes, 02 de Enero del 2024',
                         style: TextStyle(
                           color: Color(0xFF6E6E6E),
-                          fontSize: 16, // Ajusta el tamaño de fuente según sea necesario
+                          fontSize: 16, 
                         ),
                       ),
                     ),
@@ -47,7 +47,7 @@ class CarnetScreen extends StatelessWidget {
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child: Center(
-                    child: CarnetWidget(), // Reemplaza el texto con el widget del carnet
+                    child: CarnetWidget(),
                   ),
                 ),
               ],
@@ -56,9 +56,9 @@ class CarnetScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: NavBar(
-        selectedIndex: 0, // Índice de la vista actual (Home)
+        selectedIndex: 0,
         onItemTapped: (index) {
-          // Navegar a la vista correspondiente según el índice
+         
           switch (index) {
             case 0:
               Navigator.pushNamed(context, '/carnet');

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:tecsite/screens/login/login_screen.dart';  // Importa la pantalla que se mostrará después del splash
+import 'package:tecsite/screens/login/login_screen.dart'; 
 
 class SplashScreen extends StatefulWidget {
   @override

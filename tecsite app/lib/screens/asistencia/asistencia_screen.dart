@@ -34,9 +34,9 @@ class AsistenciaScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: NavBar(
-        selectedIndex: 3, // Índice de la vista actual (Home)
+        selectedIndex: 3, 
         onItemTapped: (index) {
-          // Navegar a la vista correspondiente según el índice
+     
           switch (index) {
             case 0:
               Navigator.pushNamed(context, '/carnet');

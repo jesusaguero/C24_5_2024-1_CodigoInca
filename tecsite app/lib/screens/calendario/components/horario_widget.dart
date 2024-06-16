@@ -10,13 +10,13 @@ class HorarioScreen extends StatefulWidget {
 
 class _HorarioScreenState extends State<HorarioScreen> {
   DateTime selectedDate = DateTime.now();
-  int selectedDayIndex = DateTime.now().weekday - 1; // Convert Sunday=0 to Monday=0
-  int startIndex = DateTime.now().weekday - 1; // Start with the current day column visible
+  int selectedDayIndex = DateTime.now().weekday - 1; 
+  int startIndex = DateTime.now().weekday - 1; 
 
   @override
   void initState() {
     super.initState();
-    initializeDateFormatting('es', null); // Inicializa el formato de fecha en español
+    initializeDateFormatting('es', null); 
   }
 
   @override
@@ -34,15 +34,15 @@ class _HorarioScreenState extends State<HorarioScreen> {
                     setState(() {
                       selectedDate = DateTime.now();
                       selectedDayIndex = DateTime.now().weekday - 1;
-                      startIndex = DateTime.now().weekday - 1; // Reset the start index to the current day
+                      startIndex = DateTime.now().weekday - 1; 
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white, // Background color
-                    foregroundColor: Color(0xFF004C83), // Text color
-                    side: BorderSide(color: Colors.grey[300]!), // Border color
+                    backgroundColor: Colors.white, 
+                    foregroundColor: Color(0xFF004C83), 
+                    side: BorderSide(color: Colors.grey[300]!), 
                     textStyle: TextStyle(
-                      fontWeight: FontWeight.bold, // Text weight
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   child: Text('Hoy'),
@@ -65,7 +65,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                     ),
                     columnWidths: {
                       0: FixedColumnWidth(130),
-                      for (int i = 1; i <= 3; i++) i: FixedColumnWidth(130), // Only show 3 columns at a time
+                      for (int i = 1; i <= 3; i++) i: FixedColumnWidth(130), 
                     },
                     children: [
                       _buildTableHeader(),
@@ -76,7 +76,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
               ),
             ),
           ),
-          SizedBox(height: 20), // Add 20 margin at the bottom
+          SizedBox(height: 20),
         ],
       ),
     );
@@ -85,9 +85,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
   String _getFormattedWeekRange(DateTime date) {
     final DateTime firstDayOfWeek = date.subtract(Duration(days: date.weekday - 1));
     final DateTime lastDayOfWeek = firstDayOfWeek.add(Duration(days: 6));
-    final DateFormat formatter = DateFormat('MMMM d', 'es'); // Formato en español
+    final DateFormat formatter = DateFormat('MMMM d', 'es'); 
 
-    // Capitalize the first letter of the month
     String firstDayFormatted = toBeginningOfSentenceCase(formatter.format(firstDayOfWeek))!;
     String lastDayFormatted = DateFormat('d', 'es').format(lastDayOfWeek);
     String year = date.year.toString();
@@ -114,12 +113,12 @@ class _HorarioScreenState extends State<HorarioScreen> {
             ),
           ),
         ),
-        for (int i = 0; i < 3; i++) // Only show 3 columns at a time
+        for (int i = 0; i < 3; i++) 
           GestureDetector(
             onTap: () {
               setState(() {
-                selectedDayIndex = (startIndex + i) % 7; // Update the selected day index
-                startIndex = (startIndex + i) % 7; // Update the start index to show selected day as the first day
+                selectedDayIndex = (startIndex + i) % 7; 
+                startIndex = (startIndex + i) % 7; 
               });
             },
             child: Container(
@@ -246,12 +245,12 @@ class _HorarioScreenState extends State<HorarioScreen> {
                 hours[hourIndex],
                 style: TextStyle(
                   color: Color(0xFF004C83),
-                  fontWeight: FontWeight.bold, // Make text bold
+                  fontWeight: FontWeight.bold, 
                 ),
               ),
             ),
           ),
-          for (int i = 0; i < 3; i++) // Only show 3 columns at a time
+          for (int i = 0; i < 3; i++) 
             Container(
               width: 130,
               height: 150,
@@ -274,7 +273,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
           decoration: BoxDecoration(
             color: curso.fondo,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: curso.borde),
+            border: Border.all(color: curso.borde, width: 3), 
           ),
           child: Center(
             child: Padding(
@@ -283,8 +282,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                 curso.nombre,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color(0xFF004C83), // Text color for classes
-                  fontWeight: FontWeight.bold, // Opcional: para hacer el texto en negrita
+                  color: Color(0xFF004C83), 
+                  fontWeight: FontWeight.bold, 
                 ),
               ),
             ),
@@ -309,4 +308,5 @@ class _HorarioScreenState extends State<HorarioScreen> {
       );
     }
   }
+
 }

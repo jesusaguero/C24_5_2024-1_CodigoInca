@@ -6,7 +6,7 @@ import 'package:tecsite/screens/detalleasistencia/detalleasistencia_screen.dart'
 import 'package:tecsite/screens/carnet/carnet_screen.dart';
 import 'package:tecsite/screens/calendario/calendario_screen.dart';
 import 'package:tecsite/screens/configuracion/configuracion_screen.dart';
-import 'package:tecsite/screens/login/login_screen.dart'; // Importa la pantalla de login
+import 'package:tecsite/screens/login/login_screen.dart';
 
 void main() {
   runApp(Tecsite());
@@ -18,16 +18,16 @@ class Tecsite extends StatelessWidget {
     return MaterialApp(
       title: 'Tecsite',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/', // Ruta inicial
+      initialRoute: '/', 
       routes: {
-        '/': (context) => SplashScreen(), // Pantalla de presentación
-        '/login': (context) => LoginScreen(), // Pantalla de login
-        '/home': (context) => HomeScreen(), // Pantalla principal
+        '/': (context) => SplashScreen(), 
+        '/login': (context) => LoginScreen(), 
+        '/home': (context) => HomeScreen(),
         '/carnet': (context) => CarnetScreen(),
         '/calendario': (context) => CalendarioScreen(),
         '/asistencia': (context) => AsistenciaScreen(),
         '/configuracion': (context) => ConfiguracionScreen(),
-        '/detalleasistencia': (context) => DetalleasistenciaScreen(), // Ajusta según la ruta real
+        '/detalleasistencia': (context) => DetalleasistenciaScreen(), 
     
       },
     );

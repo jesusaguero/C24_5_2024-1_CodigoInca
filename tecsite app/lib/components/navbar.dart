@@ -44,7 +44,7 @@ class NavBar extends StatelessWidget {
             ),
         ],
       ),
-      label: '', // Leave the label empty to avoid double text
+      label: '', 
     );
   }
 }

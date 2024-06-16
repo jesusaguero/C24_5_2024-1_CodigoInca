@@ -8,13 +8,13 @@ class AttendanceTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20), // Márgenes izquierdo y derecho de 20
+      margin: EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SizedBox(
-          width: MediaQuery.of(context).size.width - 40, // Ancho de la pantalla menos 40 (20 de cada lado)
+          width: MediaQuery.of(context).size.width - 40, 
           child: DataTable(
-            columnSpacing: 20, // Espacio entre las columnas
+            columnSpacing: 20,
             columns: [
               DataColumn(
                 label: Center(
@@ -69,13 +69,13 @@ class AttendanceTable extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0), // Añadir padding para mover el cubo a la derecha
+                        padding: const EdgeInsets.only(left: 20.0), 
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
                           decoration: BoxDecoration(
                             color: _getAttendanceColor(attendance['asistencia']!),
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: Colors.grey), // Añadir borde gris
+                            border: Border.all(color: Colors.grey), 
                           ),
                           child: Text(
                             attendance['asistencia']!,
@@ -98,11 +98,11 @@ class AttendanceTable extends StatelessWidget {
   Color _getAttendanceColor(String status) {
     switch (status) {
       case 'P':
-        return Color(0xFFD2FFC3); // Verde claro
+        return Color(0xFFD2FFC3); 
       case 'F':
-        return Color(0xFFFFDBDB); // Rojo claro
+        return Color(0xFFFFDBDB); 
       case 'T':
-        return Color(0xFFFFF4BD); // Amarillo claro
+        return Color(0xFFFFF4BD); 
       default:
         return Colors.grey;
     }

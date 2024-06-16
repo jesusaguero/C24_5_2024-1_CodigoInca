@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:tecsite/components/navbar.dart'; // Ajusta la ruta según tu estructura de carpetas
+import 'package:tecsite/components/navbar.dart'; 
 import 'package:tecsite/components/headlogo.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
           BackgroundImage(),
           Column(
             children: [
-              HeadLogo(), // Tu componente personalizado si es necesario
+              HeadLogo(), 
               Expanded(
                 child: GestureDetector(
                   onVerticalDragEnd: (details) {
@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                SizedBox(height: 60), // Espacio para la animación
+                                SizedBox(height: 60), 
                                 Text(
                                   'tecsup.edu.pe',
                                   style: TextStyle(
@@ -50,8 +50,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          bottom: 90, // Ajusta según tu necesidad
-                          left: MediaQuery.of(context).size.width / 2 - 25, // Centra horizontalmente
+                          bottom: 90, 
+                          left: MediaQuery.of(context).size.width / 2 - 25, 
                           child: Draggable(
                             axis: Axis.vertical,
                             feedback: Image.asset('assets/googleicon.png', width: 50),
@@ -74,9 +74,8 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: NavBar(
-        selectedIndex: 2, // Índice de la vista actual (Home)
+        selectedIndex: 2, 
         onItemTapped: (index) {
-          // Navegar a la vista correspondiente según el índice
           switch (index) {
             case 0:
               Navigator.pushNamed(context, '/carnet');
@@ -116,7 +115,7 @@ class BackgroundImage extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage('assets/homeimg.png'),
           fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken), // Oscurece la imagen
+          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
         ),
       ),
     );
